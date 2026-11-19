@@ -15,3 +15,7 @@ tmp/
 # 本地工具临时文件与调试截图
 .taste-skill/
 shots/
+gradle-err.log
+capacitor.config.ts.bak
+android_v*_backup/
+dist_stale_*/

@@ -203,6 +203,18 @@
   color: var(--dsw-alias-label-tertiary);
 }
 
+.updateBadge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: var(--r-pill);
+  background: var(--dm-grad-accent-muted);
+  color: var(--dm-accent-ink);
+  font-size: 11px;
+  line-height: 16px;
+  vertical-align: middle;
+}
+
 .error {
   font-size: 12px;
   line-height: 18px;

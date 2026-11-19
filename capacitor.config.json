@@ -1,0 +1,14 @@
+{
+  "appId": "cn.ageha.deepmuse",
+  "appName": "DeepMuse",
+  "webDir": "dist",
+  "android": {
+    "androidScheme": "https",
+    "allowMixedContent": false
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# 追加到你的 Caddy 配置（Caddy 容器与 DeepMuse 共用同一 Docker 网络）
+chat.example.com {
+	encode zstd gzip
+	reverse_proxy deepmuse:8080
+	request_body {
+		max_size 32MB
+	}
+	header Strict-Transport-Security "max-age=15552000; includeSubDomains"
+}

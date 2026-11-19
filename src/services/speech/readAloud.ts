@@ -4,6 +4,8 @@ import { ApiError } from '../api/client.js'
 import { classifyApiError } from '../api/errors.js'
 import { synthesize, TTS_SAMPLE_RATE } from '../api/speech.js'
 import { useSettings } from '../settings.js'
+import { isNative } from '../nativeBridge.js'
+import { playPcmNatively, stopNativeAudio } from './nativeAudio.js'
 
 /**
  * 朗读：同一时间只读一条回复。
@@ -23,13 +25,15 @@ export const useReadAloud = create<ReadAloudState>(() => ({ messageId: null, sta
 /** 首帧前多缓冲一点，减少网络抖动造成的断续 */
 const START_DELAY = 0.1
 
-let current: { controller: AbortController; context: AudioContext } | null = null
+let current: { controller: AbortController; context: AudioContext | null } | null = null
 
 const finish = (controller: AbortController) => {
   if (current?.controller !== controller) {
     return
   }
-  void current.context.close()
+  if (current.context) {
+    void current.context.close()
+  }
   current = null
   useReadAloud.setState({ messageId: null, status: 'idle' })
 }
@@ -41,6 +45,7 @@ export const stopReadAloud = () => {
     controller.abort()
     finish(controller)
   }
+  void stopNativeAudio()
 }
 
 /** 16-bit 小端 PCM 转成 Float32；奇数字节留到下一段 */
@@ -88,7 +93,8 @@ export const toggleReadAloud = (
     return
   }
   const controller = new AbortController()
-  const context = new AudioContext({ sampleRate: TTS_SAMPLE_RATE })
+  const native = isNative()
+  const context = native ? null : new AudioContext({ sampleRate: TTS_SAMPLE_RATE })
   current = { controller, context }
   useReadAloud.setState({ messageId, status: 'loading' })
   // 音色在开始朗读时读取，设置中切换后下一次朗读生效
@@ -98,6 +104,8 @@ export const toggleReadAloud = (
     let nextTime = 0
     let lastSource: AudioBufferSourceNode | null = null
     let rest = new Uint8Array(0)
+    // 原生端缓存整段 PCM，生成完后交由系统引擎播放（支持后台）
+    const nativeChunks: Uint8Array[] = []
     try {
       const stream = await synthesize(apiKey ?? '', text, ttsVoice, controller.signal)
       const reader = stream.getReader()
@@ -115,6 +123,10 @@ export const toggleReadAloud = (
         if (samples.length === 0) {
           continue
         }
+        if (!context) {
+          nativeChunks.push(bytes.subarray(0, samples.length * 2))
+          continue
+        }
         const buffer = context.createBuffer(1, samples.length, TTS_SAMPLE_RATE)
         buffer.copyToChannel(samples, 0)
         const source = context.createBufferSource()
@@ -128,6 +140,25 @@ export const toggleReadAloud = (
         if (useReadAloud.getState().status === 'loading') {
           useReadAloud.setState({ status: 'playing' })
         }
+      }
+      if (native) {
+        if (controller.signal.aborted) {
+          return
+        }
+        const total = nativeChunks.reduce((sum, chunk) => sum + chunk.length, 0)
+        const all = new Uint8Array(total)
+        let offset = 0
+        for (const chunk of nativeChunks) {
+          all.set(chunk, offset)
+          offset += chunk.length
+        }
+        useReadAloud.setState({ status: 'playing' })
+        const ok = await playPcmNatively(all)
+        if (!ok) {
+          onError(new Error('原生音频播放失败'))
+        }
+        finish(controller)
+        return
       }
       if (lastSource) {
         lastSource.onended = () => finish(controller)

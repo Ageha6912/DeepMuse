@@ -35,6 +35,8 @@ import { useTranslate, type TranslationKey, type TranslationMessage } from '../.
 import { Button } from '../base/Button.js'
 import { Modal } from '../base/Modal.js'
 import { usePresence } from '../base/usePresence.js'
+import { saveAndShareBlob } from '../../services/nativeBridge.js'
+import { UpdateChecker } from './UpdateChecker.js'
 import { Select } from '../base/Select.js'
 import { showToast } from '../base/toastState.js'
 import { ApiKeyConfirm, ApiKeyField, useApiKeyEditor } from './ApiKeyField.js'
@@ -114,6 +116,7 @@ const SettingsContent = ({ phase }: { phase: 'enter' | 'exit' }) => {
               <LocaleSetting />
               <TtsVoiceSetting />
               <LocationSetting />
+              <UpdateChecker currentVersion={__APP_VERSION__} />
             </>
           ) : (
             <>
@@ -620,12 +623,7 @@ const ExportHistory = ({ disabled }: { disabled: boolean }) => {
     setStatus(null)
     try {
       const { name, blob } = await exportHistory()
-      const url = URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = name
-      link.click()
-      setTimeout(() => URL.revokeObjectURL(url), 10_000)
+      await saveAndShareBlob(blob, name)
     } catch (error) {
       setStatus(errorStatus('historyExportFailed', error))
     } finally {

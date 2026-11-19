@@ -14,4 +14,5 @@ services:
 networks:
   cloud:
     external: true
-    name: cloud_default
+    # 改为你的反向代理容器所在 Docker 网络名
+    name: proxy_network

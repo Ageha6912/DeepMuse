@@ -7,6 +7,8 @@ import { rspack, type Configuration } from '@rspack/core'
 const dev = process.env.NODE_ENV !== 'production'
 const serverMode = process.env.DM_SERVER_MODE === '1'
 const defaultProtocol = process.env.DM_DEFAULT_PROTOCOL === 'openai' ? 'openai' : 'anthropic'
+/** 构建期可注入完整 API 根地址（如 APP 内置的服务端代理地址）；未设置时用下面的默认值 */
+const envApiOrigin = (process.env.DM_API_ORIGIN || '').trim()
 const targets = ['chrome >= 105', 'edge >= 105', 'safari >= 16', 'firefox >= 110']
 const root = path.dirname(fileURLToPath(import.meta.url))
 const { version } = JSON.parse(
@@ -27,7 +29,7 @@ type ConfigOptions = {
 
 /** 创建构建配置，支持自定义 API 地址和开发服务器选项 */
 export const createConfig = ({
-  apiOrigin = serverMode ? '/api' : 'https://api.deepseek.com',
+  apiOrigin = envApiOrigin || (serverMode ? '/api' : 'https://api.deepseek.com'),
   devServer,
 }: ConfigOptions = {}): Configuration => ({
   mode: dev ? 'development' : 'production',
@@ -87,6 +89,7 @@ export const createConfig = ({
       __API_ORIGIN__: JSON.stringify(apiOrigin),
       __SERVER_MODE__: JSON.stringify(serverMode),
       __DEFAULT_PROTOCOL__: JSON.stringify(defaultProtocol),
+      __APP_VERSION__: JSON.stringify(version),
     }),
     new rspack.CopyRspackPlugin({
       patterns: [

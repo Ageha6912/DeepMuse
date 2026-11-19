@@ -14,6 +14,9 @@ declare const __SERVER_MODE__: boolean
 /** 服务端模式下前端默认使用的接口协议 */
 declare const __DEFAULT_PROTOCOL__: 'anthropic' | 'openai'
 
+/** 应用版本（取自 package.json），用于原生端更新检查 */
+declare const __APP_VERSION__: string
+
 /** Prism 语言包通过副作用注册到全局 Prism */
 declare module 'prismjs/components/*' {}
 

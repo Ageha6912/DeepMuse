@@ -49,12 +49,12 @@ pnpm start
 DM_DEFAULT_PROTOCOL=openai pnpm build:server
 
 API_KEY=sk-你的Key \
-UPSTREAM_ORIGIN=https://tsuki.aceha.cn \
+UPSTREAM_ORIGIN=https://api.example.com \
 MODEL=你的模型名 \
 pnpm start
 ```
 
-`UPSTREAM_ORIGIN` 只填根地址，例如 `https://tsuki.aceha.cn`，不要填 `/v1`。
+`UPSTREAM_ORIGIN` 只填根地址，例如 `https://api.example.com`，不要填 `/v1`。
 
 ## 方案 A：Render 部署（推荐，最少运维）
 

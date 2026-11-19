@@ -1,0 +1,126 @@
+name: Build Android APK
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-apk
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c3 # v4.7.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Accept Android SDK licenses
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null 2>&1 || true
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+        with:
+          version: 11.7.0
+
+      - name: Set up Node
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf0548b3b3fdc # v4.1.0
+        with:
+          node-version: '22'
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build web assets for app
+        run: pnpm build:app
+
+      - name: Restore signing keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/signing"
+          echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/signing/deepmuse.jks"
+          chmod 600 "$RUNNER_TEMP/signing/deepmuse.jks"
+
+      - name: Resolve signing config
+        id: signing
+        env:
+          STORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          KS_PATH: ${{ runner.temp }}/signing/deepmuse.jks
+        run: |
+          {
+            echo "storeFile=$KS_PATH"
+            echo "storePassword=$STORE_PASS"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASS"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Inject signing config into Gradle
+        env:
+          STORE_FILE: ${{ steps.signing.outputs.storeFile }}
+          STORE_PASS: ${{ steps.signing.outputs.storePassword }}
+          KEY_ALIAS: ${{ steps.signing.outputs.keyAlias }}
+          KEY_PASS: ${{ steps.signing.outputs.keyPassword }}
+        run: |
+          python3 - <<'PY'
+          import os, pathlib
+          p = pathlib.Path('android/app/build.gradle')
+          s = p.read_text(encoding='utf-8')
+          def groovy(v):
+              return v.replace('\\', '\\\\').replace("'", "\\'")
+          block = """
+          android {
+              signingConfigs {
+                  release {
+                      storeFile file('__STORE_FILE__')
+                      storePassword '__STORE_PASS__'
+                      keyAlias '__KEY_ALIAS__'
+                      keyPassword '__KEY_PASS__'
+                  }
+              }
+              buildTypes {
+                  release {
+                      signingConfig signingConfigs.release
+                  }
+              }
+          }
+          """
+          for key in ('STORE_FILE', 'STORE_PASS', 'KEY_ALIAS', 'KEY_PASS'):
+              block = block.replace('__' + key + '__', groovy(os.environ[key]))
+          p.write_text(s + block, encoding='utf-8')
+          PY
+
+      - name: Build signed APK
+        working-directory: android
+        run: ./gradlew assembleRelease --no-daemon
+
+      - name: Rename APK
+        run: |
+          VERSION="${GITHUB_REF_NAME:-dev}"
+          cp android/app/build/outputs/apk/release/app-release.apk "DeepMuse-${VERSION}.apk"
+
+      - name: Upload APK to release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ github.ref_name }}
+        run: |
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            gh release upload "$VERSION" "DeepMuse-${VERSION}.apk" --clobber
+          else
+            gh release create "$VERSION" "DeepMuse-${VERSION}.apk" --title "DeepMuse $VERSION" --generate-notes
+          fi
