@@ -22,7 +22,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Set up JDK 17
-        uses: actions/setup-java@3a4f6e1af504cf6a31855fa899c6aa5355ba6c3 # v4.7.0
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
@@ -36,7 +36,7 @@ jobs:
           version: 11.7.0
 
       - name: Set up Node
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf0548b3b3fdc # v4.1.0
+        uses: actions/setup-node@v4
         with:
           node-version: '22'
           cache: pnpm
