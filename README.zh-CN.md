@@ -4,11 +4,12 @@
 
 <p align="center">
   <a href="https://chat.ageha.cn">在线体验</a> ·
+  <a href="https://github.com/Ageha6912/DeepMuse/releases/latest">下载安卓版</a> ·
   <a href="./README.md">English</a> ·
   <a href="#快速开始">快速开始</a>
 </p>
 
-**DeepMuse** 是一个属于你自己的 AI 聊天空间：一套可自托管、界面精致的网页，用来和你选择的模型对话。它基于 DeepSeek 的 `chat-demo` 二次开发，加入了独立品牌、蓝白液态界面、可配置的 API 协议 / 地址 / 模型、浏览器内处理的图片与文档附件、语音输入与朗读，以及克制的动效系统。
+**DeepMuse** 是一个属于你自己的 AI 聊天空间：一套可自托管、界面精致的网页，也有安卓客户端，用来和你选择的模型对话。它基于 DeepSeek 的 `chat-demo` 二次开发，加入了独立品牌、蓝白液态界面、可配置的 API 协议 / 地址 / 模型、浏览器内处理的图片与文档附件、语音输入与朗读，以及克制的动效系统。
 
 无需应用数据库：对话保存在你的浏览器里，页面直连配置的 API；也可以启用同源服务端代理，让密钥只留在服务器。
 
@@ -33,6 +34,16 @@
 - **语音** — 语音输入与回复朗读；移动端录音时输入框上方显示实时频谱。
 - **Markdown** — 代码高亮、KaTeX 公式与 Mermaid 图表。
 - **按你的习惯** — 中英文、浅色与深色主题、移动端布局、位置设置，以及 ZIP 格式的会话导入导出。
+
+## 安卓客户端
+
+同一个界面也以 Capacitor 打包成安卓 APP。Web 资源内置在安装包里，连同一个 API 代理（设备上不保存密钥），并补上三项原生能力：把回复分享到其他应用、保存或分享导出的归档、后台朗读。
+
+- **安装**：从 [Releases](https://github.com/Ageha6912/DeepMuse/releases/latest) 下载 APK，在手机上打开即可。支持 Android 5.0（API 22）及以上。
+- **自行构建**：先 `pnpm build:app`，再用 `pnpm cap:open` 在 Android Studio 中打开，或在 `android/` 下执行 `./gradlew assembleRelease`。
+- **Release 由 CI 构建**：推送 `v*` 标签会触发[安卓工作流](.github/workflows/android.yml)，用只存在 GitHub Secrets 里的密钥签名并附到 Release。
+
+APP 与网页版的数据相互隔离：除非通过设置里的 ZIP 导出/导入手动迁移，两边的会话各自独立。
 
 ## 快速开始
 
@@ -109,8 +120,10 @@ src/
     api/               请求、SSE、内联附件、协议类型
     chat/              会话、分支、存储与导入导出
     markdown/          解析、代码高亮与图表
-    speech/            录音与朗读
+    speech/            录音、朗读与原生后台音频
   utils/               通用工具
+android/               Capacitor 安卓工程（已生成并入库）
+assets/readme/         README 视觉素材
 ```
 
 ## 许可证

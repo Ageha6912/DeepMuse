@@ -4,11 +4,12 @@
 
 <p align="center">
   <a href="https://chat.ageha.cn">Live demo</a> ·
+  <a href="https://github.com/Ageha6912/DeepMuse/releases/latest">Download APK</a> ·
   <a href="./README.zh-CN.md">简体中文</a> ·
   <a href="#quick-start">Quick start</a>
 </p>
 
-**DeepMuse** is a personal AI chat space — a polished, self-hostable web interface for the model of your choice. It started from DeepSeek's `chat-demo` and adds its own brand, a blue-and-white liquid interface, configurable API protocol / endpoint / model, inline image and document attachments, voice input and read-aloud, and a calm motion system.
+**DeepMuse** is a personal AI chat space — a polished, self-hostable web interface for the model of your choice, available in the browser and as an Android app. It started from DeepSeek's `chat-demo` and adds its own brand, a blue-and-white liquid interface, configurable API protocol / endpoint / model, inline image and document attachments, voice input and read-aloud, and a calm motion system.
 
 No application database is required: conversations live in your browser, and the app talks directly to the configured API — or, in server mode, through a same-origin proxy that keeps the key on the server.
 
@@ -33,6 +34,16 @@ No application database is required: conversations live in your browser, and the
 - **Voice** — speech input and read-aloud, with a live audio spectrum above the input on mobile while recording.
 - **Markdown** — syntax highlighting, KaTeX math and Mermaid diagrams.
 - **Your way** — Simplified Chinese and English, light and dark themes, mobile layout, location settings, and ZIP import/export of chat history.
+
+## Android app
+
+The same interface ships as an Android app built with Capacitor. It bundles the web assets locally, talks to the same API proxy (so no key is stored on the device), and adds three native capabilities: sharing a reply to other apps, saving or sharing exported archives, and background read-aloud.
+
+- **Install**: download the APK from [Releases](https://github.com/Ageha6912/DeepMuse/releases/latest) and open it on your phone. Android 5.0 (API 22) or newer.
+- **Build it yourself**: `pnpm build:app` then `pnpm cap:open` to open the project in Android Studio, or run `cd android && ./gradlew assembleRelease`.
+- **Releases are built by CI**: pushing a `v*` tag triggers [the Android workflow](.github/workflows/android.yml), which signs the APK with a keystore stored only in GitHub Secrets and attaches it to the release.
+
+App data is isolated from the browser version — the two keep separate conversations unless you move them with the ZIP export/import in Settings.
 
 ## Quick start
 
@@ -109,8 +120,10 @@ src/
     api/               Requests, SSE, inline attachments, protocol types
     chat/              Conversations, branches, storage, import/export
     markdown/          Parsing, highlighting, diagrams
-    speech/            Recording and read-aloud
+    speech/            Recording, read-aloud, native background audio
   utils/               Shared helpers
+android/               Capacitor Android project (generated, committed)
+assets/readme/         README visuals
 ```
 
 ## License
