@@ -107,7 +107,7 @@ jobs:
 
       - name: Build signed APK
         working-directory: android
-        run: ./gradlew assembleRelease --no-daemon
+        run: sh ./gradlew assembleRelease --no-daemon
 
       - name: Rename APK
         run: |
