@@ -19,3 +19,5 @@ gradle-err.log
 capacitor.config.ts.bak
 android_v*_backup/
 dist_stale_*/
+# 本地签名 APK 交付目录（CI 产物走 Releases）
+app-release/
