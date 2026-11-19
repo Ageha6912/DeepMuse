@@ -1,16 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
-  <title id="title">DeepMuse 单色标识</title>
-  <desc id="desc">弯月与层叠水纹，寓意沉思与灵感沉淀。</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t d">
+  <title id="t">DeepMuse</title>
+  <desc id="d">蓝白渐变方块上的白色弯月与水纹。</desc>
   <defs>
-    <mask id="dm-favicon-crescent" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
-      <rect width="64" height="64" fill="#000"/>
-      <circle cx="30" cy="25" r="13" fill="#fff"/>
-      <circle cx="37" cy="20" r="12" fill="#000"/>
-    </mask>
+    <linearGradient id="gF" x1="0" y1="0" x2="1" y2="1"><stop offset="0.00" stop-color="#1B47AE"/><stop offset="0.45" stop-color="#2A5BD4"/><stop offset="0.80" stop-color="#4C8DF9"/><stop offset="1.00" stop-color="#8FC0FB"/></linearGradient>
   </defs>
-  <rect width="64" height="64" fill="#26215C" mask="url(#dm-favicon-crescent)"/>
-  <path d="M17 42Q32 49 47 42" fill="none" stroke="#26215C" stroke-width="3" stroke-linecap="round"/>
-  <path d="M21 48Q32 53 43 48" fill="none" stroke="#26215C" stroke-width="2.4" stroke-linecap="round"/>
-  <path d="M26 54Q32 57 38 54" fill="none" stroke="#26215C" stroke-width="1.8" stroke-linecap="round"/>
-  <path d="M46 10L47.6 14.4L52 16L47.6 17.6L46 22L44.4 17.6L40 16L44.4 14.4Z" fill="#26215C"/>
+  <rect width="64" height="64" rx="15" fill="url(#gF)"/>
+  <path d="M43.166,32.453A13.6,13.6 0 1 0 28.153,14.104A12.3,12.3 0 0 1 43.166,32.453Z" fill="#FFFFFF"/>
+  <path d="M17.5,45.5Q32,53 46.5,45.5" fill="none" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round"/>
+  <path d="M23,53.5Q32,57.6 41,53.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.62" stroke-width="3.2" stroke-linecap="round"/>
 </svg>

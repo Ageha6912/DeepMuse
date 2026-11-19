@@ -41,7 +41,7 @@
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: var(--dm-grad-accent-muted);
+  background: var(--dm-grad-brand);
   color: #ffffff;
   box-shadow: var(--dm-shadow-accent-muted);
 }

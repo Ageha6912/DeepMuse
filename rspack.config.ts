@@ -95,6 +95,8 @@ export const createConfig = ({
       patterns: [
         { from: path.resolve(root, 'LICENSE'), to: 'LICENSE', toType: 'file' },
         { from: path.resolve(root, 'src/favicon.svg'), to: 'favicon.svg', toType: 'file' },
+        { from: path.resolve(root, 'src/assets/favicon-32.png'), to: 'favicon-32.png', toType: 'file' },
+        { from: path.resolve(root, 'src/assets/apple-touch-icon.png'), to: 'apple-touch-icon.png', toType: 'file' },
       ],
     }),
   ],

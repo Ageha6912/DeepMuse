@@ -33,11 +33,11 @@
   margin-bottom: var(--s-4);
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 24px;
-  background: var(--dm-grad-panel-strong);
+  background: var(--dm-grad-brand);
   box-shadow:
-    0 0 0 1px rgba(37, 99, 235, 0.06),
-    0 24px 50px -26px var(--dm-glow);
-  color: var(--dm-logo-ink);
+    0 0 0 1px rgba(37, 99, 235, 0.08),
+    0 24px 50px -26px rgba(42, 91, 212, 0.55);
+  color: #ffffff;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   isolation: isolate;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- DeepMuse 自适应图标单色层：供 Android 13+ 主题图标使用，系统负责着色 -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="108" android:viewportHeight="108">
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M67.728,52.110A15.4,15.4 0 1 0 50.428,31.851A13.9,13.9 0 0 1 67.728,52.110Z"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="4.0"
+        android:strokeLineCap="round" android:fillColor="#00000000"
+        android:pathData="M37.4,68.8Q53.2,76.4 69.0,68.8"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="3.2"
+        android:strokeLineCap="round" android:fillColor="#00000000"
+        android:pathData="M41.2,77.0Q53.2,82.6 65.2,77.0"/>
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="2.6"
+        android:strokeLineCap="round" android:fillColor="#00000000"
+        android:pathData="M45.4,84.2Q53.2,87.9 61.0,84.2"/>
+</vector>

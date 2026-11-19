@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="t d">
+  <title id="t">DeepMuse 单色标记</title>
+  <desc id="d">弯月与三层水纹组成的单色标记，颜色随使用场景设定。</desc>
+  <path d="M42.421,31.389A13.2,13.2 0 1 0 27.845,13.412A12.0,12.0 0 0 1 42.421,31.389Z" fill="#14304F"/>
+  <path d="M16.5,42.4Q32,50.2 47.5,42.4" fill="none" stroke="#14304F" stroke-opacity="1.00" stroke-width="3.1" stroke-linecap="round"/>
+  <path d="M20.6,49.4Q32,55.4 43.4,49.4" fill="none" stroke="#14304F" stroke-opacity="0.78" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M25.6,55.6Q32,58.8 38.4,55.6" fill="none" stroke="#14304F" stroke-opacity="0.54" stroke-width="2.0" stroke-linecap="round"/>
+  <path d="M46.6,9.6L48.3,14.1L52.8,15.8L48.3,17.5L46.6,22L44.9,17.5L40.4,15.8L44.9,14.1Z" fill="#14304F" fill-opacity="0.9"/>
+</svg>

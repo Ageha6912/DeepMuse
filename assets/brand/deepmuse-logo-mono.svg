@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 150" role="img" aria-labelledby="t d">
+  <title id="t">DeepMuse 单色标识</title>
+  <desc id="d">单色版本的 DeepMuse 横向标识，颜色随使用场景设定。</desc>
+  <g transform="translate(6 32) scale(1.344)">
+    <path d="M42.421,31.389A13.2,13.2 0 1 0 27.845,13.412A12.0,12.0 0 0 1 42.421,31.389Z" fill="#14304F"/>
+  <path d="M16.5,42.4Q32,50.2 47.5,42.4" fill="none" stroke="#14304F" stroke-opacity="1.0" stroke-width="3.1" stroke-linecap="round"/>
+  <path d="M20.6,49.4Q32,55.4 43.4,49.4" fill="none" stroke="#14304F" stroke-opacity="0.78" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M25.6,55.6Q32,58.8 38.4,55.6" fill="none" stroke="#14304F" stroke-opacity="0.54" stroke-width="2.0" stroke-linecap="round"/>
+  <path d="M46.6,9.6L48.3,14.1L52.8,15.8L48.3,17.5L46.6,22L44.9,17.5L40.4,15.8L44.9,14.1Z" fill="#14304F"/>
+  </g>
+  <text x="112" y="76" fill="#14304F" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="46" font-weight="600" letter-spacing="-1.4">DeepMuse</text>
+  <text x="114" y="106" fill="#14304F" fill-opacity="0.72" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif" font-size="16" letter-spacing="5.2">沉思 · 灵感之深</text>
+</svg>
