@@ -1,5 +1,23 @@
 apply plugin: 'com.android.application'
 
+/**
+ * 版本号统一以根目录 package.json 为准，避免 APK 与 Web 端版本脱钩。
+ * versionCode 由 semver 推导：major*10000 + minor*100 + patch，
+ * 保证单调递增（安卓要求新版 versionCode 必须大于旧版才能覆盖安装）。
+ */
+def appVersionName = "1.0.0"
+def appVersionCode = 1
+try {
+    def pkg = new groovy.json.JsonSlurper().parseText(
+        new File(project.rootProject.projectDir, '../package.json').text
+    )
+    appVersionName = (pkg.version ?: '1.0.0').toString()
+    def parts = appVersionName.tokenize('.').collect { it.replaceAll(/[^0-9].*$/, '') as Integer ?: 0 }
+    appVersionCode = (parts[0] ?: 0) * 10000 + (parts.size() > 1 ? parts[1] : 0) * 100 + (parts.size() > 2 ? parts[2] : 0)
+} catch (Exception ignored) {
+    // package.json 读不到时退回默认值，不影响构建
+}
+
 android {
     namespace "cn.ageha.deepmuse"
     compileSdk rootProject.ext.compileSdkVersion
@@ -7,8 +25,8 @@ android {
         applicationId "cn.ageha.deepmuse"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode appVersionCode
+        versionName appVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
