@@ -93,6 +93,33 @@ const cleanupTimer = setInterval(() => {
 }, 60_000)
 cleanupTimer.unref()
 
+/**
+ * 允许的原生客户端来源。安卓 Capacitor 以 https://localhost 或
+ * capacitor://localhost 加载内置页面，相对站点本身是跨域请求。
+ */
+const CORS_ORIGINS = new Set([
+  'https://localhost',
+  'http://localhost',
+  'capacitor://localhost',
+  'ionic://localhost',
+])
+
+/** 为代表原生容器的请求补上 CORS 头；同源请求不受影响 */
+const applyCors = (req, res) => {
+  const origin = req.headers.origin
+  if (!origin || !CORS_ORIGINS.has(origin)) {
+    return
+  }
+  res.setHeader('Access-Control-Allow-Origin', origin)
+  res.setHeader('Vary', 'Origin')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'authorization, content-type, x-api-key, anthropic-beta, anthropic-version, accept'
+  )
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Max-Age', '86400')
+}
+
 const json = (res, status, payload) => {
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
@@ -286,6 +313,13 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (url.pathname === '/api' || url.pathname.startsWith('/api/')) {
+    applyCors(req, res)
+    // 预检请求：CORS 头已经写好，直接结束，不占用限流额度
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204)
+      res.end()
+      return
+    }
     if (!isAllowedPath(url.pathname)) {
       json(res, 404, { error: { message: '不支持的接口路径' } })
       return

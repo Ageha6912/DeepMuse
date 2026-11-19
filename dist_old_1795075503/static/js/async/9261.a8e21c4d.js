@@ -1,0 +1,1 @@
+"use strict";(self.rspackChunkdeepmuse=self.rspackChunkdeepmuse||[]).push([[9261],{5820(e,s,r){r.d(s,{createArchitectureServices:()=>c.S});var c=r(3738);r(7127)}}]);

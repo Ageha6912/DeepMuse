@@ -212,3 +212,28 @@ body.change-theme *::after {
     overscroll-behavior-y: none;
   }
 }
+
+/* ==========================================================================
+   原生容器（安卓 WebView）性能降级
+   WebView 里 backdrop-filter 与无限循环的模糊动画开销很大，容易掉帧。
+   这里只关掉装饰性的模糊与漂移，保留布局、颜色和一次性进出场动画。
+   ========================================================================== */
+html[data-native='true'] body {
+  /* 固定背景在 WebView 里会随滚动重绘，改用随内容滚动 */
+  background-attachment: scroll;
+}
+
+html[data-native='true'] *,
+html[data-native='true'] *::before,
+html[data-native='true'] *::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 液体背景：三团 64px 高斯模糊的光斑在 WebView 里最耗 GPU，原生端隐藏，
+   只保留底层渐变，视觉仍是蓝白液态风格。 */
+html[data-native='true'] [data-liquid='blob'],
+html[data-native='true'] [data-liquid='sheen'] {
+  display: none !important;
+  animation: none !important;
+}

@@ -1,0 +1,1 @@
+"use strict";(self.rspackChunkdeepmuse=self.rspackChunkdeepmuse||[]).push([[4719],{6962(e,s,r){r.d(s,{Browser:()=>n});let n=(0,r(5215).F3)("Browser",{web:()=>r.e(9953).then(r.bind(r,5592)).then(e=>new e.BrowserWeb)})}}]);

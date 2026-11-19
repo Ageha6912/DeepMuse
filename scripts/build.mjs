@@ -17,7 +17,9 @@ const result = spawnSync(
       ...process.env,
       NODE_ENV: 'production',
       DM_SERVER_MODE: serverMode ? '1' : '0',
-      DM_API_ORIGIN: serverMode ? '/api' : process.env.DM_API_ORIGIN || 'https://api.deepseek.com',
+      // 显式指定的地址优先：APP 需要指向远端代理（https://host/api），
+      // 而不能沿用同源相对路径 /api（那会指向内置的本地资源）。
+      DM_API_ORIGIN: process.env.DM_API_ORIGIN || (serverMode ? '/api' : 'https://api.deepseek.com'),
     },
   }
 )
