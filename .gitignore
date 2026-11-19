@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.pnpm-store/
+.cache/
+*.log
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+.env.*
+!.env.example
+tmp/
+
+# 本地工具临时文件与调试截图
+.taste-skill/
+shots/

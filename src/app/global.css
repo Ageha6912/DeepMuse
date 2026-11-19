@@ -1,0 +1,214 @@
+:root {
+  --message-list-max-width: 800px;
+  --message-list-padding-horizontal: 40px;
+
+  /* 关键帧名以变量传递，避免 CSS Modules 在 .module.css 里把名字哈希后与全局定义对不上 */
+  --dm-kf-fade: dm-fade;
+  --dm-kf-fade-out: dm-fade-out;
+  --dm-kf-pop: dm-pop;
+  --dm-kf-pop-out: dm-pop-out;
+  --dm-kf-rise: dm-rise;
+  --dm-kf-rise-sm: dm-rise-sm;
+  --dm-kf-slide-in: dm-slide-in;
+  --dm-kf-drawer-in: dm-drawer-in;
+  --dm-kf-drawer-out: dm-drawer-out;
+  --dm-kf-sheet-in: dm-sheet-in;
+  --dm-kf-sheet-out: dm-sheet-out;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    --message-list-max-width: 700px;
+    --message-list-padding-horizontal: 28px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  word-break: break-word;
+  font-family: var(--dsw-font-family);
+  font-size: var(--ds-font-size-m);
+  color: var(--dsw-alias-label-primary);
+  background-color: var(--dm-bg);
+  background-image: var(--dm-grad-page);
+  background-attachment: fixed;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+  font-feature-settings: 'kern';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --scroll-color: rgba(37, 99, 235, 0.16);
+  --scroll-color-hover: rgba(37, 99, 235, 0.28);
+}
+
+::selection {
+  color: var(--dm-label);
+  background: rgba(147, 197, 253, 0.45);
+}
+
+body.dark {
+  color-scheme: dark;
+}
+
+body[data-ds-dark-theme] {
+  --scroll-color: rgba(255, 255, 255, 0.14);
+  --scroll-color-hover: rgba(255, 255, 255, 0.22);
+}
+
+:where(button, a, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--dm-accent);
+  outline-offset: 2px;
+}
+
+body.change-theme *,
+body.change-theme *::before,
+body.change-theme *::after {
+  transition: none !important;
+}
+
+/* ==========================================================================
+   动效基础
+   统一使用短时长、小位移，只改 opacity 与 transform，不参与布局计算。
+   ========================================================================== */
+@keyframes dm-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dm-rise-sm {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 4px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dm-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dm-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes dm-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-12px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* 退场关键帧：与上方入场一一对应，只改 opacity 与 transform。 */
+@keyframes dm-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dm-pop-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+}
+
+/* 抽屉：从左侧滑入 / 滑出，位移用百分比跟随抽屉自身宽度 */
+@keyframes dm-drawer-in {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dm-drawer-out {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+/* 底部弹层：从下方滑入 / 滑出（移动端设置面板） */
+@keyframes dm-sheet-in {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes dm-sheet-out {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+/* 减少动效偏好：保留状态变化，去掉位移与循环动画。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media not all and (min-width: 768px) {
+  html,
+  body,
+  #root {
+    height: 100%;
+    overflow: hidden;
+    overscroll-behavior-y: none;
+  }
+}

@@ -1,0 +1,121 @@
+.frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  gap: var(--s-4);
+  box-sizing: border-box;
+  padding: var(--s-4);
+  overflow: hidden;
+  background: transparent;
+}
+
+/* 侧栏插槽：宽度过渡负责收放，内部内容由 .sider 的透明度控制。
+   折叠时用负右边距抵消 .frame 的 gap，保证主区紧贴。 */
+.siderSlot {
+  position: relative;
+  flex-shrink: 0;
+  width: 272px;
+  overflow: hidden;
+  visibility: visible;
+  transition:
+    width var(--motion-slow) var(--ease-out),
+    margin-right var(--motion-slow) var(--ease-out);
+}
+
+.siderSlot[data-collapsed='true'] {
+  width: 0;
+  margin-right: calc(-1 * var(--s-4));
+  /* 动画结束后再真正隐藏，避免动画期间焦点落到不可见内容上。 */
+  visibility: hidden;
+  transition:
+    width var(--motion-slow) var(--ease-out),
+    margin-right var(--motion-slow) var(--ease-out),
+    visibility 0s linear var(--motion-slow);
+}
+
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 28px;
+  background: var(--dm-grad-panel);
+  box-shadow: var(--dm-shadow-panel);
+  backdrop-filter: blur(26px) saturate(118%);
+  -webkit-backdrop-filter: blur(26px) saturate(118%);
+  /* 首屏入场：只播放一次，减少动效偏好下由全局规则压到瞬时完成。 */
+  animation: var(--dm-kf-rise) var(--motion-slow) var(--ease-out) both;
+
+  [data-ds-dark-theme] & {
+    border-color: rgba(147, 197, 253, 0.16);
+  }
+}
+
+.content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.saveError {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  margin: var(--s-4) var(--s-5) 0;
+  padding: var(--s-3) var(--s-4);
+  border: 1px solid var(--dm-border);
+  border-radius: var(--r-md);
+  background: var(--dm-grad-soft);
+  color: var(--dm-label);
+  font: var(--t-small);
+}
+
+.loadingView {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.loadingState {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-4);
+  padding: var(--s-5);
+  color: var(--dm-label-secondary);
+  font: var(--t-small);
+  text-align: center;
+}
+
+@media not all and (min-width: 768px) {
+  .frame {
+    position: fixed;
+    top: var(--app-viewport-top, 0px);
+    bottom: auto;
+    gap: 0;
+    height: var(--app-viewport-height, 100dvh);
+    padding: 0;
+  }
+
+  .main {
+    border: none;
+    border-radius: 0;
+    background: rgba(248, 252, 255, 0.72);
+    box-shadow: none;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    [data-ds-dark-theme] & {
+      background: rgba(7, 20, 38, 0.78);
+    }
+  }
+}

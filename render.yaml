@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: deepmuse
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: API_KEY
+        sync: false
+      - key: UPSTREAM_ORIGIN
+        value: https://api.deepseek.com
+      - key: MODEL
+        value: deepseek-flash
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "30"
+      - key: MAX_BODY_MB
+        value: "32"

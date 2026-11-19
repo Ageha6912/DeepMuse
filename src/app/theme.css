@@ -1,0 +1,436 @@
+:root {
+  --dsw-font-family:
+    'Instrument Sans', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC',
+    'Source Han Sans SC', sans-serif;
+  font-variant-ligatures: no-contextual;
+}
+
+body {
+  --ds-control-height-xl: 48px;
+  --ds-control-height-l: 44px;
+  --ds-control-height-m: 44px;
+  --ds-control-height-s: 36px;
+  --ds-control-height-xs: 32px;
+
+  --ds-font-size-m: 16px;
+
+  --ds-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ds-font-family-code:
+    Menlo, Monaco, Consolas, 'Cascadia Mono', 'Ubuntu Mono', 'DejaVu Sans Mono', 'Liberation Mono',
+    'JetBrains Mono', 'Fira Code', Cousine, 'Roboto Mono', 'Courier New', Courier, sans-serif,
+    system-ui;
+
+  --ds-transition-duration: 0.2s;
+  --ds-transition-duration-slow: 0.3s;
+}
+
+body {
+  --dsw-static-amber-100: rgb(254, 245, 231);
+  --dsw-static-amber-400: rgb(247, 173, 49);
+  --dsw-static-amber-500: rgb(245, 158, 11);
+  --dsw-static-amber-600: rgb(221, 134, 41);
+  --dsw-static-amber-900: rgb(39, 36, 31);
+  --dsw-static-blue-100: rgb(228, 237, 253);
+  --dsw-static-blue-200: rgb(211, 226, 255);
+  --dsw-static-blue-300: rgb(183, 200, 254);
+  --dsw-static-blue-400: rgb(103, 158, 254);
+  --dsw-static-blue-450: rgb(86, 134, 254);
+  --dsw-static-blue-500: rgb(57, 100, 254);
+  --dsw-static-blue-50: rgb(237, 243, 254);
+  --dsw-static-blue-600: rgb(72, 104, 178);
+  --dsw-static-blue-800: rgb(52, 65, 91);
+  --dsw-static-blue-900: rgb(40, 49, 66);
+  --dsw-static-green-100: rgb(230, 250, 237);
+  --dsw-static-green-400: rgb(78, 209, 126);
+  --dsw-static-green-500: rgb(34, 197, 94);
+  --dsw-static-green-900: rgb(35, 60, 44);
+  --dsw-static-neutral-850: rgb(33, 33, 35);
+  --dsw-static-neutral-bluish-00: rgb(255, 255, 255);
+  --dsw-static-neutral-bluish-1000: rgb(15, 17, 21);
+  --dsw-static-neutral-bluish-100: rgb(235, 238, 242);
+  --dsw-static-neutral-bluish-150: rgb(233, 236, 242);
+  --dsw-static-neutral-bluish-200: rgb(225, 229, 238);
+  --dsw-static-neutral-bluish-300: rgb(207, 211, 214);
+  --dsw-static-neutral-bluish-400: rgb(173, 178, 184);
+  --dsw-static-neutral-bluish-50: rgb(249, 250, 251);
+  --dsw-static-neutral-bluish-600: rgb(129, 133, 140);
+  --dsw-static-neutral-bluish-60: rgb(245, 246, 247);
+  --dsw-static-neutral-bluish-700: rgb(97, 102, 107);
+  --dsw-static-neutral-bluish-750: rgb(67, 69, 74);
+  --dsw-static-neutral-bluish-75: rgb(241, 243, 245);
+  --dsw-static-neutral-bluish-800: rgb(53, 54, 56);
+  --dsw-static-neutral-bluish-850: rgb(44, 44, 46);
+  --dsw-static-neutral-bluish-900: rgb(27, 27, 28);
+  --dsw-static-neutral-bluish-950: rgb(21, 21, 23);
+  --dsw-static-neutral-100: rgb(245, 245, 245);
+  --dsw-static-neutral-300: rgb(212, 212, 212);
+  --dsw-static-neutral-550: rgb(101, 103, 107);
+  --dsw-static-red-400: rgb(242, 90, 90);
+  --dsw-static-red-600: rgb(236, 19, 19);
+}
+
+body[data-ds-dark-theme] {
+  --dsw-static-amber-100: rgb(254, 245, 231);
+  --dsw-static-amber-400: rgb(247, 173, 49);
+  --dsw-static-amber-500: rgb(245, 158, 11);
+  --dsw-static-amber-600: rgb(221, 134, 41);
+  --dsw-static-amber-900: rgb(39, 36, 31);
+  --dsw-static-blue-100: rgb(228, 237, 253);
+  --dsw-static-blue-200: rgb(211, 226, 255);
+  --dsw-static-blue-300: rgb(183, 200, 254);
+  --dsw-static-blue-400: rgb(103, 158, 254);
+  --dsw-static-blue-450: rgb(86, 134, 254);
+  --dsw-static-blue-500: rgb(57, 100, 254);
+  --dsw-static-blue-50: rgb(237, 243, 254);
+  --dsw-static-blue-600: rgb(72, 104, 178);
+  --dsw-static-blue-800: rgb(52, 65, 91);
+  --dsw-static-blue-900: rgb(40, 49, 66);
+  --dsw-static-green-100: rgb(230, 250, 237);
+  --dsw-static-green-400: rgb(78, 209, 126);
+  --dsw-static-green-500: rgb(34, 197, 94);
+  --dsw-static-green-900: rgb(35, 60, 44);
+  --dsw-static-neutral-850: rgb(33, 33, 35);
+  --dsw-static-neutral-bluish-00: rgb(255, 255, 255);
+  --dsw-static-neutral-bluish-1000: rgb(15, 17, 21);
+  --dsw-static-neutral-bluish-100: rgb(235, 238, 242);
+  --dsw-static-neutral-bluish-150: rgb(233, 236, 242);
+  --dsw-static-neutral-bluish-200: rgb(225, 229, 238);
+  --dsw-static-neutral-bluish-300: rgb(207, 211, 214);
+  --dsw-static-neutral-bluish-400: rgb(173, 178, 184);
+  --dsw-static-neutral-bluish-50: rgb(249, 250, 251);
+  --dsw-static-neutral-bluish-600: rgb(129, 133, 140);
+  --dsw-static-neutral-bluish-60: rgb(249, 250, 251);
+  --dsw-static-neutral-bluish-700: rgb(97, 102, 107);
+  --dsw-static-neutral-bluish-750: rgb(67, 69, 74);
+  --dsw-static-neutral-bluish-75: rgb(241, 243, 245);
+  --dsw-static-neutral-bluish-800: rgb(53, 54, 56);
+  --dsw-static-neutral-bluish-850: rgb(44, 44, 46);
+  --dsw-static-neutral-bluish-900: rgb(27, 27, 28);
+  --dsw-static-neutral-bluish-950: rgb(21, 21, 23);
+  --dsw-static-neutral-100: rgb(245, 245, 245);
+  --dsw-static-neutral-300: rgb(212, 212, 212);
+  --dsw-static-neutral-550: rgb(101, 103, 107);
+  --dsw-static-red-400: rgb(242, 90, 90);
+  --dsw-static-red-600: rgb(236, 19, 19);
+}
+
+body {
+  --dsw-alias-bg-base: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-layer-2: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-layer-3: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-bg-skeleton: rgba(0, 0, 0, 0.04);
+  --dsw-alias-border-inverted: rgba(0, 0, 0, 0);
+  --dsw-alias-border-l1: rgba(0, 0, 0, 0.04);
+  --dsw-alias-border-l2-darkmode-thin: rgba(0, 0, 0, 0.1);
+  --dsw-alias-border-l2: rgba(0, 0, 0, 0.1);
+  --dsw-alias-border-l3: rgba(0, 0, 0, 0.12);
+  --dsw-alias-brand-primary-invert: var(--dsw-static-blue-500);
+  --dsw-alias-brand-primary: var(--dsw-static-blue-500);
+  --dsw-alias-brand-text: var(--dsw-static-blue-500);
+  --dsw-alias-button-contrast-fill: var(--dsw-static-neutral-bluish-700);
+  --dsw-alias-button-elevated-fill: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-button-ghost-active-border: var(--dsw-static-blue-300);
+  --dsw-alias-button-ghost-active-fill: var(--dsw-static-blue-50);
+  --dsw-alias-button-ghost-active-hover: var(--dsw-static-blue-100);
+  --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
+  --dsw-alias-button-primary-hover: var(--dsw-static-blue-450);
+  --dsw-alias-interactive-bg-active: rgba(38, 49, 72, 0.1);
+  --dsw-alias-interactive-bg-hover-danger: rgba(236, 19, 19, 0.05);
+  --dsw-alias-interactive-bg-hover: rgba(38, 49, 72, 0.06);
+  --dsw-alias-interactive-bg-hover-accent: rgba(38, 49, 72, 0.14);
+  --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-400);
+  --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-200);
+  --dsw-alias-label-primary-foreground: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-label-primary-inverted: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-label-primary: var(--dsw-static-neutral-bluish-1000);
+  --dsw-alias-label-secondary: var(--dsw-static-neutral-bluish-700);
+  --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-600);
+  --dsw-alias-markdown-citation: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-markdown-inline-code: var(--dsw-static-neutral-bluish-100);
+  --dsw-alias-markdown-placeholder: var(--dsw-static-neutral-bluish-60);
+  --dsw-alias-markdown-tag: var(--dsw-static-neutral-bluish-75);
+  --dsw-alias-state-error-primary: var(--dsw-static-red-600);
+  --dsw-alias-state-error-secondary: var(--dsw-static-red-400);
+  --dsw-alias-toast-bg: var(--dsw-static-neutral-bluish-800);
+  --dsw-specific-bubble: var(--dsw-static-blue-50);
+  --dsw-specific-input-major: var(--dsw-static-neutral-bluish-00);
+  --dsw-specific-login-input: var(--dsw-static-neutral-bluish-50);
+  --dsw-specific-menu: var(--dsw-alias-bg-layer-3);
+  --dsw-alias-tooltip-bg: var(--dsw-static-neutral-bluish-850);
+  --dsw-specific-selector: var(--dsw-static-neutral-bluish-75);
+  --dsw-specific-sidebar-fill: var(--dsw-static-neutral-bluish-50);
+  --dsw-specific-sidebar-nav-item-active-accent: var(--dsw-static-blue-100);
+  --dsw-specific-sidebar-nav-item-hover: var(--dsw-static-neutral-bluish-75);
+}
+
+body[data-ds-dark-theme] {
+  --dsw-alias-bg-base: var(--dsw-static-neutral-bluish-950);
+  --dsw-alias-bg-layer-2: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-bg-layer-3: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-bg-skeleton: rgba(255, 255, 255, 0.08);
+  --dsw-alias-border-inverted: rgba(255, 255, 255, 0.06);
+  --dsw-alias-border-l1: rgba(255, 255, 255, 0.06);
+  --dsw-alias-border-l2-darkmode-thin: rgba(255, 255, 255, 0.06);
+  --dsw-alias-border-l2: rgba(255, 255, 255, 0.12);
+  --dsw-alias-border-l3: rgba(255, 255, 255, 0.16);
+  --dsw-alias-brand-primary-invert: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-brand-primary: var(--dsw-static-blue-450);
+  --dsw-alias-brand-text: var(--dsw-static-blue-400);
+  --dsw-alias-button-contrast-fill: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-button-elevated-fill: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-button-ghost-active-border: var(--dsw-static-blue-600);
+  --dsw-alias-button-ghost-active-fill: var(--dsw-static-blue-900);
+  --dsw-alias-button-ghost-active-hover: var(--dsw-static-blue-800);
+  --dsw-alias-button-primary-fill: var(--dsw-alias-brand-primary);
+  --dsw-alias-button-primary-hover: var(--dsw-static-blue-500);
+  --dsw-alias-interactive-bg-active: rgba(255, 255, 255, 0.14);
+  --dsw-alias-interactive-bg-hover-danger: rgba(242, 90, 90, 0.15);
+  --dsw-alias-interactive-bg-hover: rgba(255, 255, 255, 0.08);
+  --dsw-alias-interactive-bg-hover-accent: rgba(255, 255, 255, 0.24);
+  --dsw-alias-label-caption: var(--dsw-static-neutral-bluish-600);
+  --dsw-alias-label-dimmed: var(--dsw-static-neutral-bluish-750);
+  --dsw-alias-label-primary-foreground: var(--dsw-static-neutral-bluish-00);
+  --dsw-alias-label-primary-inverted: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-label-primary: var(--dsw-static-neutral-bluish-50);
+  --dsw-alias-label-secondary: var(--dsw-static-neutral-bluish-300);
+  --dsw-alias-label-tertiary: var(--dsw-static-neutral-bluish-400);
+  --dsw-alias-markdown-citation: var(--dsw-static-neutral-bluish-800);
+  --dsw-alias-markdown-code-block-banner: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-markdown-code-block: var(--dsw-static-neutral-bluish-900);
+  --dsw-alias-markdown-inline-code: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-markdown-placeholder: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-markdown-tag: var(--dsw-static-neutral-bluish-850);
+  --dsw-alias-state-error-primary: var(--dsw-static-red-400);
+  --dsw-alias-state-error-secondary: var(--dsw-static-red-400);
+  --dsw-alias-toast-bg: var(--dsw-static-neutral-bluish-750);
+  --dsw-specific-bubble: var(--dsw-static-neutral-bluish-850);
+  --dsw-specific-input-major: var(--dsw-static-neutral-bluish-850);
+  --dsw-specific-login-input: var(--dsw-static-neutral-bluish-900);
+  --dsw-specific-menu: var(--dsw-alias-bg-layer-3);
+  --dsw-alias-tooltip-bg: var(--dsw-static-neutral-bluish-750);
+  --dsw-specific-selector: var(--dsw-static-neutral-bluish-750);
+  --dsw-specific-sidebar-fill: var(--dsw-static-neutral-bluish-900);
+  --dsw-specific-sidebar-nav-item-active-accent: var(--dsw-static-neutral-bluish-800);
+  --dsw-specific-sidebar-nav-item-hover: var(--dsw-static-neutral-bluish-850);
+}
+
+body {
+  --dsw-shadow-lv3:
+    0 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 4px 0 rgba(0, 0, 0, 0.02), 0 12px 32px 0 rgba(0, 0, 0, 0.08);
+}
+
+body {
+  --dsw-font-markdown-h1: 700 24px/34px var(--dsw-font-family);
+
+  --dsw-font-markdown-h2: 700 22px/32px var(--dsw-font-family);
+
+  --dsw-font-markdown-h3: 700 20px/30px var(--dsw-font-family);
+
+  --dsw-font-markdown-h4: 600 16px/28px var(--dsw-font-family);
+
+  --dsw-font-markdown-base: 16px/28px var(--dsw-font-family);
+
+  --dsw-font-markdown-base-strong: 600 16px/28px var(--dsw-font-family);
+
+  --dsw-font-markdown-table: 15px/25px var(--dsw-font-family);
+
+  --dsw-font-markdown-table-head: 500 15px/25px var(--dsw-font-family);
+
+  --dsw-font-markdown-small: 14px/24px var(--dsw-font-family);
+
+  --dsw-font-markdown-small-strong: 600 14px/24px var(--dsw-font-family);
+
+  --dsw-font-markdown-code: 14px/22px var(--ds-font-family-code);
+
+  --dsw-font-markdown-code-block: 13px/22px var(--ds-font-family-code);
+
+  --dsw-font-s-strong-14: 500 14px/22px var(--dsw-font-family);
+
+  --dsw-font-xs-13: 13px/20px var(--dsw-font-family);
+}
+
+/* ==========================================================================
+   DeepMuse · 蓝白液体渐变设计系统
+   统一 135° 渐变方向：雾蓝底 → 近白高光 → 深蓝阴影。
+   玻璃面板承载内容，液体光斑在底层缓慢流动，保持“沉思”的安静感。
+   ========================================================================== */
+:root {
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+
+  --r-lg: 24px;
+  --r-md: 16px;
+  --r-sm: 10px;
+  --r-btn: 14px;
+  --r-pill: 999px;
+
+  /* 动效：时长偏短、位移不超过 8px，只作用于 transform 与 opacity。 */
+  --motion-fast: 140ms;
+  --motion-base: 220ms;
+  --motion-slow: 300ms;
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --dm-font-display:
+    'Iowan Old Style', 'Palatino Linotype', 'Songti SC', 'STSong', 'Noto Serif CJK SC',
+    'Source Han Serif SC', Georgia, serif;
+
+  --t-h1: 400 46px/56px var(--dm-font-display);
+  --t-h2: 500 22px/30px var(--dm-font-display);
+  --t-card: 500 16px/24px var(--dsw-font-family);
+  --t-body: 400 16px/26px var(--dsw-font-family);
+  --t-small: 400 14px/22px var(--dsw-font-family);
+  --t-label: 500 13px/18px var(--dsw-font-family);
+
+  /* 统一渐变方向：左上雾蓝 → 中部近白 → 右下浅蓝（整体亮度轻微上调） */
+  --dm-grad-page: linear-gradient(135deg, #ebf5ff 0%, #f9fcff 42%, #ddeeff 100%);
+  --dm-grad-panel: linear-gradient(150deg, rgba(255, 255, 255, 0.9), rgba(238, 247, 255, 0.68));
+  --dm-grad-panel-strong: linear-gradient(
+    150deg,
+    rgba(255, 255, 255, 0.97),
+    rgba(245, 250, 255, 0.88)
+  );
+  --dm-grad-accent: linear-gradient(135deg, #2a5bd4 0%, #3468e6 46%, #74b2fb 100%);
+  --dm-grad-accent-hover: linear-gradient(135deg, #2a4cb8 0%, #2a5bd4 46%, #4c8df9 100%);
+  /* 柔和版：侧栏 logo 与新对话按钮专用，降低饱和度与明度，避免过于抢眼。 */
+  --dm-grad-accent-muted: linear-gradient(135deg, #5f7ec2 0%, #7796d4 46%, #a4c1e8 100%);
+  --dm-grad-accent-muted-hover: linear-gradient(135deg, #5271b5 0%, #6887ca 46%, #96b4de 100%);
+  --dm-grad-soft: linear-gradient(140deg, rgba(223, 237, 254, 0.68), rgba(255, 255, 255, 0.5));
+  --dm-grad-bubble: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(223, 237, 254, 0.68)
+  );
+  --dm-grad-line: linear-gradient(
+    90deg,
+    rgba(52, 107, 232, 0),
+    rgba(52, 107, 232, 0.24),
+    rgba(52, 107, 232, 0)
+  );
+
+  --dm-bg: #f1f8ff;
+  --dm-surface: rgba(255, 255, 255, 0.6);
+  --dm-surface-solid: #ffffff;
+  --dm-sunken: rgba(218, 236, 253, 0.5);
+  --dm-bubble: rgba(255, 255, 255, 0.76);
+  --dm-accent: #2a5bd4;
+  --dm-accent-hover: #2a4cb8;
+  --dm-accent-text: #2a5bd4;
+  --dm-accent-ink: #ffffff;
+  --dm-label: #14304f;
+  --dm-label-secondary: #557296;
+  --dm-border: rgba(59, 130, 246, 0.14);
+  --dm-border-strong: rgba(37, 99, 235, 0.24);
+  --dm-logo-ink: #284492;
+  --dm-glow: rgba(96, 165, 250, 0.29);
+  --dm-shadow-panel:
+    0 30px 70px -34px rgba(30, 64, 175, 0.35), 0 2px 8px rgba(37, 99, 235, 0.045);
+  --dm-shadow-soft: 0 16px 34px -22px rgba(30, 64, 175, 0.31);
+  --dm-shadow-accent: 0 14px 26px -14px rgba(52, 107, 232, 0.5);
+  --dm-shadow-accent-muted: 0 12px 22px -14px rgba(95, 126, 194, 0.36);
+  /* 侧栏项（历史会话、设置）悬停描边：比近白背景更深的蓝灰，保证可辨。 */
+  --dm-sider-hover-border: rgba(37, 99, 235, 0.34);
+  --dm-sider-hover-shadow: 0 1px 0 rgba(37, 99, 235, 0.06);
+
+  /* 兼容旧组件引用 */
+  --dm-raised: var(--dm-shadow-soft);
+  --dm-raised-sm: var(--dm-shadow-soft);
+  --dm-pressed: none;
+}
+
+body[data-ds-dark-theme] {
+  --dm-grad-page: linear-gradient(135deg, #081829 0%, #0c2139 44%, #113052 100%);
+  --dm-grad-panel: linear-gradient(150deg, rgba(18, 42, 71, 0.9), rgba(8, 23, 42, 0.76));
+  --dm-grad-panel-strong: linear-gradient(
+    150deg,
+    rgba(22, 49, 80, 0.94),
+    rgba(10, 27, 48, 0.88)
+  );
+  --dm-grad-accent: linear-gradient(135deg, #2a5bd4 0%, #4c8df9 48%, #a0c9fd 100%);
+  --dm-grad-accent-hover: linear-gradient(135deg, #3468e6 0%, #74b2fb 48%, #cae4fe 100%);
+  /* 柔和版：侧栏 logo 与新对话按钮专用，深色下同样收敛亮度。 */
+  --dm-grad-accent-muted: linear-gradient(135deg, #3a5a9c 0%, #5177b8 48%, #8fb2dc 100%);
+  --dm-grad-accent-muted-hover: linear-gradient(135deg, #466db0 0%, #6288c8 48%, #a0c0e6 100%);
+  --dm-grad-soft: linear-gradient(140deg, rgba(30, 64, 108, 0.47), rgba(9, 25, 45, 0.38));
+  --dm-grad-bubble: linear-gradient(
+    135deg,
+    rgba(26, 54, 86, 0.9),
+    rgba(15, 37, 64, 0.76)
+  );
+  --dm-grad-line: linear-gradient(
+    90deg,
+    rgba(147, 197, 253, 0),
+    rgba(147, 197, 253, 0.26),
+    rgba(147, 197, 253, 0)
+  );
+
+  --dm-bg: #091828;
+  --dm-surface: rgba(15, 35, 60, 0.68);
+  --dm-surface-solid: #102742;
+  --dm-sunken: rgba(30, 64, 108, 0.42);
+  --dm-bubble: rgba(20, 45, 78, 0.76);
+  --dm-accent: #6eacf8;
+  --dm-accent-hover: #a0c9fd;
+  --dm-accent-text: #a0c9fd;
+  --dm-accent-ink: #081829;
+  --dm-label: #e5eefa;
+  --dm-label-secondary: #98afcc;
+  --dm-border: rgba(147, 197, 253, 0.16);
+  --dm-border-strong: rgba(147, 197, 253, 0.28);
+  --dm-logo-ink: #d7e4f9;
+  --dm-glow: rgba(59, 130, 246, 0.26);
+  --dm-shadow-panel:
+    0 34px 80px -34px rgba(0, 0, 0, 0.76), 0 2px 10px rgba(0, 0, 0, 0.2);
+  --dm-shadow-soft: 0 18px 38px -24px rgba(0, 0, 0, 0.66);
+  --dm-shadow-accent: 0 14px 28px -14px rgba(59, 130, 246, 0.42);
+  --dm-shadow-accent-muted: 0 12px 24px -14px rgba(70, 109, 176, 0.32);
+  /* 侧栏项悬停描边：深色下用偏亮的蓝，与深蓝面板拉开层次。 */
+  --dm-sider-hover-border: rgba(147, 197, 253, 0.4);
+  --dm-sider-hover-shadow: 0 1px 0 rgba(147, 197, 253, 0.08);
+}
+
+body {
+  --dsw-alias-bg-base: var(--dm-bg);
+  --dsw-alias-bg-layer-2: var(--dm-surface);
+  --dsw-alias-bg-layer-3: var(--dm-surface);
+  --dsw-alias-brand-primary: var(--dm-accent);
+  --dsw-alias-brand-primary-invert: var(--dm-accent);
+  --dsw-alias-brand-text: var(--dm-accent-text);
+  --dsw-alias-button-primary-fill: var(--dm-accent);
+  --dsw-alias-button-primary-hover: var(--dm-accent-hover);
+  --dsw-alias-button-ghost-active-fill: var(--dm-sunken);
+  --dsw-alias-button-ghost-active-hover: var(--dm-sunken);
+  --dsw-alias-button-ghost-active-border: var(--dm-border-strong);
+  --dsw-alias-button-elevated-fill: var(--dm-bg);
+  --dsw-alias-label-primary: var(--dm-label);
+  --dsw-alias-label-secondary: var(--dm-label-secondary);
+  --dsw-alias-label-tertiary: var(--dm-label-secondary);
+  --dsw-alias-label-caption: var(--dm-label-secondary);
+  --dsw-alias-border-l1: var(--dm-border);
+  --dsw-alias-border-l2: var(--dm-border);
+  --dsw-alias-border-l2-darkmode-thin: var(--dm-border);
+  --dsw-alias-border-l3: var(--dm-border-strong);
+  --dsw-alias-border-inverted: var(--dm-border);
+  --dsw-alias-markdown-inline-code: var(--dm-sunken);
+  --dsw-alias-markdown-code-block: var(--dm-sunken);
+  --dsw-alias-markdown-code-block-banner: var(--dm-sunken);
+  --dsw-specific-bubble: var(--dm-bubble);
+  --dsw-specific-input-major: var(--dm-bg);
+  --dsw-specific-sidebar-fill: var(--dm-bg);
+  --dsw-specific-sidebar-nav-item-active-accent: var(--dm-sunken);
+  --dsw-specific-sidebar-nav-item-hover: var(--dm-surface);
+  --dsw-specific-selector: var(--dm-sunken);
+  --dsw-specific-login-input: var(--dm-surface);
+  --dsw-alias-toast-bg: var(--dm-label);
+  --dsw-alias-tooltip-bg: var(--dm-label);
+  --dsw-shadow-lv3: none;
+}
